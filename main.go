@@ -48,8 +48,9 @@ func attendingClients() {
 			fmt.Println("Atendiendo cliente:", value)
 		} else {
 			fmt.Println("No hay clientes que atender")
-			isBarberSleep = true
 			fmt.Println("El barbero se durmió")
+			isBarberSleep = true
+			break
 		}
 	}
 }
@@ -63,13 +64,13 @@ func creatingClients() {
 		if isBarberSleep {
 			fmt.Println("El barbero se despertó")
 			isBarberSleep = false
+			go attendingClients()
 		}
 		queue.Enqueue(text)
 	}
 }
 
 func main() {
-	go attendingClients()
 	fmt.Println("\033[33mPresiona enter para crear un cliente\033[0m")
 	creatingClients()
 }
