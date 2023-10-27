@@ -57,6 +57,7 @@ func attendingClients() {
 func creatingClients() {
 	for {
 		reader := bufio.NewReader(os.Stdin)
+		_, _ = reader.ReadString('\n')
 		fmt.Print("Ingresa el nombre del cliente: ")
 		text, _ := reader.ReadString('\n')
 		if isBarberSleep {
@@ -69,5 +70,6 @@ func creatingClients() {
 
 func main() {
 	go attendingClients()
+	fmt.Println("\033[33mPresiona enter para crear un cliente\033[0m")
 	creatingClients()
 }
